@@ -159,17 +159,20 @@
             display: flex;
             align-items: center;
             font-size: 0.9rem;
+            color: black;
         }
         
         .disease-item:hover {
             background-color: #f0f8ff;
             padding-left: 10px;
+            color: orangered;
         }
         
         .disease-item.active {
             background-color: #e3f2fd;
             border-left: 3px solid var(--primary-color);
             font-weight: 600;
+            color: orangered;
         }
         
         .disease-code {
@@ -273,7 +276,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            padding-bottom: 4px;
+            margin-top: -9px;
+            padding-bottom: 3px;            
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -297,7 +301,7 @@
         }
         
         .yhct-code {
-            color: #333;
+            color: black;
             border-radius: 6px;
             padding: 6px 10px; /* Giảm padding để hiển thị nhiều dòng hơn */
             font-size: 0.9rem;
@@ -310,8 +314,9 @@
         }
         
         .yhct-code:hover {
-            background: rgba(57, 255, 20, 0.2);
+            background: #f0f8ff;
             transform: translateY(-1px);
+            color: orangered;
         }
         
         .yhct-code i {
@@ -511,7 +516,7 @@
             <div class="row">
                 <div class="col-md-6 text-md-start text-center">
                     <p class="mb-0">© <span id="current-year">2025</span> Tra cứu mã bệnh Y học cổ truyền | 
-                    <i class="fa-solid fa-magnifying-glass"></i><a href="https://icd.kcb.vn/icd-10/icd10" class="text-white" target="_blank"> Tra cứu mã ICD-10 Bộ Y tế</a></p>
+                    <i class="fa-solid fa-magnifying-glass"></i><a href="https://icd.kcb.vn/icd-10/icd10" target="_blank"> Tra cứu mã ICD-10 Bộ Y tế</a></p>
                 </div>
                 <div class="col-md-6 text-md-end text-center">
                     <p class="mb-0">Tổng hợp & viết code: BSCKI. Nguyễn Văn Dũng</p>
@@ -629,13 +634,13 @@
                         ]
                     },
                     {
-                        main: 'U62.392 - Yêu cước thống',
+                        main: 'U62.393 - Tọa điến phong',
                         subs: [
-                            'U62.392.01 - Thể phong hàn thấp',
-                            'U62.392.02 - Thể phong hàn thấp kết hợp can thận hư',
-                            'U62.392.03 - Thể thấp nhiệt',
-                            'U62.392.04 - Thể huyết ứ',
-                            'U62.392.05 - Thể khác'
+                            'U62.393.01 - Thể phong hàn thấp',
+                            'U62.393.02 - Thể phong hàn thấp kết hợp can thận hư',
+                            'U62.393.03 - Thể thấp nhiệt',
+                            'U62.393.04 - Thể huyết ứ',
+                            'U62.393.05 - Thể khác'
                         ]
                     }
                 ]
