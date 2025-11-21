@@ -1,27 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <!-- Nếu file ảnh của bạn là favicon.png -->
-    <link rel="icon" href="./favicon.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tra cứu mã bệnh Y học cổ truyền theo ICD-10</title>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118749435-4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-118749435-4');
-    </script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <style>
         :root {
             --primary-color: #1a5276;
@@ -44,8 +28,7 @@
             padding: 0;
             margin: 0;
             font-size: 16px;
-            padding-bottom: 60px; /* Tạo khoảng trống cho footer */
-            /* Ngăn cuộn body */
+            padding-bottom: 60px;
             overflow-y: hidden;
         }
         
@@ -122,7 +105,6 @@
             margin-top: 8px;
             height: calc(100vh - 180px);
             min-height: 450px;
-            /* Ngăn cuộn toàn bộ container */
             overflow: hidden;
         }
         
@@ -137,7 +119,7 @@
         }
         
         .sidebar-header {
-            padding: 6px 8px; /* Giảm từ 8px 10px */
+            padding: 6px 8px;
             background: linear-gradient(135deg, var(--primary-color), #2980b9);
             color: white;
             font-weight: 600;
@@ -284,13 +266,96 @@
             color: #bdc3c7;
         }
         
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .content-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .content-actions button {
+            margin-left: 5px;
+            padding: 3px 6px;
+            font-size: 0.8rem;
+        }
+        
+        .yhct-codes {
+            display: flex;
+            flex-direction: column;
+            gap: 4px; /* Giảm khoảng cách giữa các dòng */
+            margin-top: 6px;
+        }
+        
+        .yhct-code {
+            color: #333;
+            border-radius: 6px;
+            padding: 6px 10px; /* Giảm padding để hiển thị nhiều dòng hơn */
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            line-height: 1.2; /* Giảm line-height để tiết kiệm không gian */
+        }
+        
+        .yhct-code:hover {
+            background: rgba(57, 255, 20, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        .yhct-code i {
+            display: none;
+        }
+        
+        .yhct-main-code {
+            font-weight: 600;
+            background-color: rgba(26, 82, 118, 0.05); /* Thêm màu nền nhẹ để phân biệt */
+        }
+        
+        .yhct-sub-code {
+            margin-left: 20px;
+            font-size: 0.85rem;
+            background-color: rgba(26, 82, 118, 0.02); /* Màu nền nhẹ hơn cho mã con */
+        }
+        
+        .copy-success {
+            color: var(--success-color);
+            font-size: 0.75rem;
+            margin-left: 6px;
+            display: none;
+        }
+        
+        /* Cải tiến link trong footer */
+        .footer a {
+            text-decoration: none; /* Bỏ gạch chân */
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ffcc00; /* Màu vàng khi hover */
+        }
+
+        .footer a:active {
+            color: #ff9900; /* Màu cam đậm hơn khi click */
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .main-container {
                 flex-direction: column;
                 height: auto;
                 min-height: 70vh;
-                margin-bottom: 70px; /* Tạo khoảng trống cho footer trên tablet */
+                margin-bottom: 70px;
             }
             
             .sidebar {
@@ -299,18 +364,18 @@
             }
             
             body {
-                padding-bottom: 70px; /* Tăng padding cho footer trên tablet */
+                padding-bottom: 70px;
             }
         }
         
         @media (max-width: 768px) {
             .main-container {
-                margin-bottom: 80px; /* Tạo khoảng trống cho footer trên mobile */
+                margin-bottom: 80px;
             }
             
             body {
-                padding-bottom: 80px; /* Tăng padding cho footer trên mobile */
-                overflow-y: auto; /* Cho phép cuộn trên mobile */
+                padding-bottom: 80px;
+                overflow-y: auto;
             }
             
             .header {
@@ -336,6 +401,11 @@
                 font-size: 0.8rem;
                 margin-bottom: 5px;
             }
+            
+            .yhct-code {
+                padding: 5px 8px; /* Giảm thêm padding trên mobile */
+                font-size: 0.85rem;
+            }
         }
         
         /* Custom scrollbar */
@@ -355,95 +425,6 @@
         
         ::-webkit-scrollbar-thumb:hover {
             background: #a8a8a8;
-        }
-        
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px; /* Giảm từ 10px */
-            padding-bottom: 4px; /* Giảm từ 6px */
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .content-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .content-actions button {
-            margin-left: 5px;
-            padding: 3px 6px;
-            font-size: 0.8rem;
-        }
-        
-        /* Cải tiến hiển thị mã YHCT theo hàng dọc */
-        .yhct-codes {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-top: 6px;
-        }
-        
-        .yhct-code {
-            background: linear-gradient(135deg, #39ff14, #00cc00);
-            color: #000;
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .yhct-code:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-        }
-        
-        .yhct-code i {
-            margin-left: 6px;
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-        
-        /* Mã YHCT chính */
-        .yhct-main-code {
-            background: linear-gradient(135deg, #ff9900, #ff6600);
-            font-weight: 600;
-        }
-        
-        /* Mã YHCT con */
-        .yhct-sub-code {
-            background: linear-gradient(135deg, #66ccff, #3399ff);
-            margin-left: 20px;
-            font-size: 0.85rem;
-        }
-        
-        .copy-success {
-            color: var(--success-color);
-            font-size: 0.75rem;
-            margin-left: 6px;
-            display: none;
-        }
-        
-        /* Cải tiến link */
-        .footer a {
-            text-decoration: none; /* Bỏ gạch chân */
-            color: white;
-            transition: color 0.3s;
-        }
-        
-        .footer a:hover {
-            color: #f39c12; /* Màu vàng khi hover */
-        }
-        
-        .footer a:active {
-            color: #e67e22; /* Màu cam đậm hơn khi click */
         }
     </style>
 </head>
@@ -528,10 +509,10 @@
             <div class="row">
                 <div class="col-md-6 text-md-start text-center">
                     <p class="mb-0">© <span id="current-year">2025</span> Tra cứu mã bệnh Y học cổ truyền | 
-                    <a href="https://icd.kcb.vn/icd-10/icd10" class="text-white" target="_blank">Tra cứu mã ICD-10 Bộ Y tế</a></p>
+                    <i class="fa-solid fa-magnifying-glass"></i><a href="https://icd.kcb.vn/icd-10/icd10" class="text-white" target="_blank"> Tra cứu mã ICD-10 Bộ Y tế</a></p>
                 </div>
                 <div class="col-md-6 text-md-end text-center">
-                    <p class="mb-0">Tổng hợp & viết code: <strong>BSCKI. Nguyễn Văn Dũng</strong></p>
+                    <p class="mb-0">Tổng hợp & viết code: BSCKI. Nguyễn Văn Dũng</p>
                 </div>
             </div>
         </div>
@@ -593,7 +574,6 @@
                 name: 'Bệnh phó thương hàn, không đặc hiệu', 
                 yhctCodes: ['YHCT011', 'YHCT013']
             },
-            // Thêm các mã bệnh khác ở đây...
             { 
                 code: 'B90.9', 
                 name: 'Di chứng do lao hô hấp và bệnh lao không đặc hiệu', 
@@ -604,19 +584,58 @@
                 name: 'Rối loạn Tic, không biệt định', 
                 yhctCodes: ['YHCT201', 'YHCT202', 'YHCT203']
             },
-            // Thêm 300 mã bệnh ICD-10 mới
+            // Thêm các mã bệnh khác
             { 
                 code: 'M54.5', 
                 name: 'Đau cột sống thắt lưng', 
                 yhctCodes: [
-                    {main: 'U62.392.5 - Yêu thống', subs: [
-                        'U62.392.5.01 - Thể hàn thấp',
-                        'U62.392.5.02 - Thể thấp nhiệt',
-                        'U62.392.5.03 - Thể huyết ứ',
-                        'U62.392.5.04 - Thể can thận hư',
-                        'U62.392.5.05 - Thể thận dương hư',
-                        'U62.392.5.06 - Thể khác'
-                    ]}
+                    {
+                        main: 'U62.392.5 - Yêu thống',
+                        subs: [
+                            'U62.392.5.01 - Thể hàn thấp',
+                            'U62.392.5.02 - Thể thấp nhiệt',
+                            'U62.392.5.03 - Thể huyết ứ',
+                            'U62.392.5.04 - Thể can thận hư',
+                            'U62.392.5.05 - Thể thận dương hư',
+                            'U62.392.5.06 - Thể khác'
+                        ]
+                }
+                ]
+            },
+            { 
+                code: 'M54.3', 
+                name: 'Đau dây thần kinh toạ', 
+                yhctCodes: [
+                    {
+                        main: 'U62.391 - Tọa cốt phong',
+                        subs: [
+                            'U62.391.01 - Thể phong hàn thấp',
+                            'U62.391.02 - Thể phong hàn thấp kết hợp can thận hư',
+                            'U62.391.03 - Thể thấp nhiệt',
+                            'U62.391.04 - Thể huyết ứ',
+                            'U62.391.05 - Thể khác'
+                        ]
+                    },
+                    {
+                        main: 'U62.392 - Yêu cước thống',
+                        subs: [
+                            'U62.392.01 - Thể phong hàn thấp',
+                            'U62.392.02 - Thể phong hàn thấp kết hợp can thận hư',
+                            'U62.392.03 - Thể thấp nhiệt',
+                            'U62.392.04 - Thể huyết ứ',
+                            'U62.392.05 - Thể khác'
+                        ]
+                    },
+                    {
+                        main: 'U62.392 - Yêu cước thống',
+                        subs: [
+                            'U62.392.01 - Thể phong hàn thấp',
+                            'U62.392.02 - Thể phong hàn thấp kết hợp can thận hư',
+                            'U62.392.03 - Thể thấp nhiệt',
+                            'U62.392.04 - Thể huyết ứ',
+                            'U62.392.05 - Thể khác'
+                        ]
+                    }
                 ]
             },
             { 
@@ -664,8 +683,6 @@
                 name: 'Nhiễm trùng đường hô hấp trên cấp tính không đặc hiệu', 
                 yhctCodes: ['YHCT1101', 'YHCT1102']
             },
-            // Thêm các mã bệnh khác để đủ 300...
-            // (Để tiết kiệm không gian, tôi sẽ chỉ thêm một số mã mẫu)
             { 
                 code: 'A02.0', 
                 name: 'Nhiễm khuẩn Salmonella đường ruột', 
@@ -715,9 +732,7 @@
                 code: 'A16.9', 
                 name: 'Lao hô hấp không đặc hiệu', 
                 yhctCodes: ['YHCT2101', 'YHCT2102']
-            },
-            // Tiếp tục thêm các mã khác...
-            // (Trong thực tế, bạn sẽ thêm đủ 300 mã bệnh ở đây)
+            }
         ];
 
         // Khởi tạo ứng dụng
@@ -821,7 +836,6 @@
             // Thêm sự kiện click cho các mã YHCT
             document.querySelectorAll('.yhct-code').forEach(codeElement => {
                 codeElement.addEventListener('click', function() {
-                    // Chỉ sao chép phần mã từ data-code, không sao chép toàn bộ văn bản
                     const code = this.getAttribute('data-code');
                     
                     navigator.clipboard.writeText(code).then(() => {
@@ -853,14 +867,14 @@
                         </div>
                     `;
                 } else if (typeof code === 'object' && code.main) {
-                    // Mã có phân cấp - chỉ lấy phần mã trước dấu gạch ngang
+                    // Mã có phân cấp - xử lý mã chính
                     const mainCodeParts = code.main.split(' - ');
                     const mainCodeNumber = mainCodeParts[0];
-                    const mainCodeDescription = mainCodeParts[1] || '';
+                    const mainCodeText = code.main;
                     
                     html += `
                         <div class="yhct-code yhct-main-code" data-code="${mainCodeNumber}">
-                            <span>${code.main}</span>
+                            <span>${mainCodeText}</span>
                             <i class="fas fa-copy"></i>
                         </div>
                     `;
@@ -870,11 +884,11 @@
                         code.subs.forEach(subCode => {
                             const subCodeParts = subCode.split(' - ');
                             const subCodeNumber = subCodeParts[0];
-                            const subCodeDescription = subCodeParts[1] || '';
+                            const subCodeText = subCode;
                             
                             html += `
                                 <div class="yhct-code yhct-sub-code" data-code="${subCodeNumber}">
-                                    <span>${subCode}</span>
+                                    <span>${subCodeText}</span>
                                     <i class="fas fa-copy"></i>
                                 </div>
                             `;
